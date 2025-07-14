@@ -10,13 +10,12 @@ deploy:
   services:
     - docker:24.0.5-dind
   before_script:
-    - apk add --no-cache bash
+    - apk add --no-cache bash git go
     - docker info
     - set -a
     - source .env
     - set +a
     - source .env
-    - apk add --no-cache git
     - go env -w GOPRIVATE="10.1.20.130/*"
     - go env -w GOINSECURE="10.1.20.130/*"
     - git config --global url."http://$DROPPING_READ_TOKEN@10.1.20.130/".insteadOf "https://10.1.20.130/"
