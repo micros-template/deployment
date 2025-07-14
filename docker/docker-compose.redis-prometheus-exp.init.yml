@@ -1,0 +1,13 @@
+services:
+  prometheus-redis-exporter:
+    image: oliver006/redis_exporter:v1.74.0-alpine
+    container_name: prometheus-redis-exporter
+    environment:
+      - REDIS_ADDR=redis://redis:6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    restart: unless-stopped
+    # need to add password file here 
+    command: ["--redis.addr=redis://redis:6379","--redis.password=$REDIS_PASSWORD"]
+    depends_on:
+      - redis
+      - prometheus

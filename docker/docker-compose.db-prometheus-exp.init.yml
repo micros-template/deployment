@@ -1,0 +1,21 @@
+services:
+  userdb-postgresql-exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.17.1
+    container_name: userdb-postgresql-exporter
+    environment:
+      - DATA_SOURCE_NAME=postgresql://postgres:${DB_POSTGRESQL_PASSWORD}@${DB_USER_DOCKER_HOST}:${DB_PORT}/${DB_NAME}?sslmode=${DB_SSLMODE}
+    restart: unless-stopped
+    depends_on:
+      - user_db
+      - prometheus
+  
+  authdb-postgresql-exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.17.1
+    container_name: authdb-postgresql-exporter
+    environment:
+      - DATA_SOURCE_NAME=postgresql://postgres:${DB_POSTGRESQL_PASSWORD}@${DB_AUTH_DOCKER_HOST}:${DB_PORT}/${DB_NAME}?sslmode=${DB_SSLMODE}
+    restart: unless-stopped
+    depends_on:
+      - auth_db
+      - prometheus
+

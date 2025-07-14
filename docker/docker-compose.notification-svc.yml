@@ -1,0 +1,9 @@
+services:
+  notification_service:
+    platform: linux/amd64
+    image: notification_service:${NOTIFICATION_SERVICE_VERSION}
+    container_name: notification_service
+    restart: unless-stopped
+    environment:
+      - ENV=production
+    command: "/notification_service"

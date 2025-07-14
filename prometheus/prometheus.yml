@@ -1,0 +1,37 @@
+global:
+  external_labels:
+    monitor: "monitor"
+
+scrape_configs:
+  - job_name: "nats-scraper"
+    scrape_interval: 60s
+    static_configs:
+      - targets: ["prometheus-nats-exporter:7777"]
+  - job_name: "nginx-scraper"
+    scrape_interval: 60s
+    static_configs:
+      - targets: ["prometheus-nginx-exporter:9113"]
+  - job_name: "redis-scraper"
+    scrape_interval: 60s
+    static_configs:
+      - targets: ["prometheus-redis-exporter:9121"]
+  - job_name: "minio-scraper-cluster"
+    metrics_path: /minio/v2/metrics/cluster
+    scheme: http
+    scrape_interval: 60s
+    static_configs:
+      - targets: ["minio:80"]
+  - job_name: "minio-scraper-node"
+    metrics_path: /minio/v2/metrics/node
+    scheme: http
+    scrape_interval: 60s
+    static_configs:
+      - targets: ["minio:80"]
+  - job_name: "userdb_scraper"
+    scrape_interval: 60s
+    static_configs:
+      - targets: ["userdb-postgresql-exporter:9187"]
+  - job_name: "authdb_scraper"
+    scrape_interval: 60s
+    static_configs:
+      - targets: ["authdb-postgresql-exporter:9187"]

@@ -1,0 +1,17 @@
+services:
+  nats:
+    container_name: nats
+    build:
+      context: ../nats
+    restart: unless-stopped
+    volumes:
+      - nats-data:/nats:rw
+      - jetstream-data:/jetstream/data:rw
+    environment:
+      - NATS_USER=${NATS_USER}
+      - NATS_PASSWORD=${NATS_PASSWORD}
+    command: "-c /etc/nats/nats.conf --name nats -p 4221 -m 8222 "
+
+volumes:
+  jetstream-data:
+  nats-data:

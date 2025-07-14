@@ -1,0 +1,9 @@
+services:
+  prometheus-nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:1.4
+    container_name: prometheus-nginx-exporter
+    restart: unless-stopped
+    command:
+      - '--nginx.scrape-uri=http://gateway/nginx_status'
+    depends_on:
+      - gateway

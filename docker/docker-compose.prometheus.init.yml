@@ -1,0 +1,8 @@
+services:
+  prometheus:
+    build:
+      context: ../prometheus
+    container_name: prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"

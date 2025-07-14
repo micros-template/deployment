@@ -1,0 +1,14 @@
+services:
+  prometheus-nats-exporter:
+    image: natsio/prometheus-nats-exporter:${NATS_EXPORTER_VERSION}
+    container_name: prometheus-nats-exporter
+    environment:
+      - NATS_URL=nats://nats:8222
+    command:
+      - "-varz"
+      - "-jsz=all"
+      - "http://nats:8222"
+    restart: unless-stopped
+    depends_on:
+      - nats
+      - prometheus

@@ -1,0 +1,13 @@
+services:
+  gateway:
+    container_name: gateway
+    build:
+      context: ../nginx
+    platform: linux/amd64
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - auth_service
+      - user_service
+      - file_service

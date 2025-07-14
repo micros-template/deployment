@@ -1,0 +1,7 @@
+services:
+  user_db:
+    ports:
+      - "5432:5432"
+  auth_db:
+    ports:
+      - "5433:5432"

@@ -1,0 +1,13 @@
+services:
+  auth_service:
+    platform: linux/amd64
+    image: auth_service:${AUTH_SERVICE_VERSION}
+    container_name: auth_service
+    restart: unless-stopped
+    depends_on:
+      - file_service
+      - user_service
+      - notification_service
+    environment:
+      - ENV=production
+    command: "/auth_service"

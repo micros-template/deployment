@@ -1,0 +1,6 @@
+services:
+  grafana:
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SERVER_ROOT_URL=http://localhost:3000/

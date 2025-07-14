@@ -1,0 +1,28 @@
+services:
+  user_db:
+    image: postgres:17.5-alpine3.22
+    container_name: user_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    restart: unless-stopped
+    volumes:
+      - user_db_data:/var/lib/postgresql/data
+      - ../db/init/:/docker-entrypoint-initdb.d/
+
+  auth_db:
+    image: postgres:17.5-alpine3.22
+    container_name: auth_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    restart: unless-stopped
+    volumes:
+      - auth_db_data:/var/lib/postgresql/data
+      - ../db/init/:/docker-entrypoint-initdb.d/
+
+volumes:
+  auth_db_data:
+  user_db_data:
