@@ -1,0 +1,32 @@
+stages:
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+deploy:
+  stage: deploy
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  before_script:
+    - apk add --no-cache bash
+    - docker info
+    - set -a
+    - source .env
+    - set +a
+    - source .env
+    - apk add --no-cache git
+    - go env -w GOPRIVATE="10.1.20.130/*"
+    - go env -w GOINSECURE="10.1.20.130/*"
+    - git config --global url."http://$DROPPING_READ_TOKEN@10.1.20.130/".insteadOf "https://10.1.20.130/"
+  script:
+    - chmod +x ./bin/prod-stop.sh
+    - ./bin/prod-stop.sh
+    - chmod +x ./bin/prod-start.sh
+    - ./bin/prod-start.sh
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: manual
+  environment:
+    name: production

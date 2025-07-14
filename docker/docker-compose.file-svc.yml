@@ -1,7 +1,7 @@
 services:
   file_service:
     platform: linux/amd64
-    image: file_service:${FILE_SERVICE_VERSION}
+    image: ${FILE_SERVICE_IMAGE}
     container_name: file_service
     restart: unless-stopped
     environment:

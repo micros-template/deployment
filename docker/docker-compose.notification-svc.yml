@@ -1,7 +1,7 @@
 services:
   notification_service:
     platform: linux/amd64
-    image: notification_service:${NOTIFICATION_SERVICE_VERSION}
+    image: ${NOTIFICATION_SERVICE_IMAGE}
     container_name: notification_service
     restart: unless-stopped
     environment:

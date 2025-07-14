@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 if [[ $(basename "$PWD") == "bin" ]]; then
   echo "Run this from project root!!"
   exit 1

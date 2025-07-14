@@ -1,7 +1,7 @@
 services:
   auth_service:
     platform: linux/amd64
-    image: auth_service:${AUTH_SERVICE_VERSION}
+    image: ${AUTH_SERVICE_IMAGE}
     container_name: auth_service
     restart: unless-stopped
     depends_on:

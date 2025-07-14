@@ -1,7 +1,7 @@
 services:
   user_service:
     platform: linux/amd64
-    image: user_service:${USER_SERVICE_VERSION}
+    image: ${USER_SERVICE_IMAGE}
     container_name: user_service
     restart: unless-stopped
     environment:

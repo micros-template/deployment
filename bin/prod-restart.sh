@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ./bin/prod-stop.sh
 ./bin/prod-init.sh
