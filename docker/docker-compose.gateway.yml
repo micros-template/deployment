@@ -6,7 +6,7 @@ services:
     platform: linux/amd64
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "81:80"
     depends_on:
       - auth_service
       - user_service
