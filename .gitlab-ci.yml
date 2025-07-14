@@ -22,6 +22,7 @@ deploy:
   script:
     - chmod +x ./bin/prod-stop.sh
     - ./bin/prod-stop.sh
+    - chmod +x ./bin/prod-init.sh
     - chmod +x ./bin/prod-start.sh
     - ./bin/prod-start.sh
   environment:
