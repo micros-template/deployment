@@ -27,3 +27,10 @@ deploy:
     - ./bin/prod-start.sh
   environment:
     name: production
+  after_script:
+    - |
+      if [ "$CI_JOB_STATUS" = "failed" ]; then
+        echo "Job failed, running ./bin/prod-stop.sh for cleanup..."
+        chmod +x ./bin/prod-stop.sh
+        ./bin/prod-stop.sh
+      fi
