@@ -21,4 +21,5 @@ docker compose --env-file ../.env -p dropboks \
   -f docker-compose.user-svc.yml \
   -f docker-compose.file-svc.yml \
   -f docker-compose.notification-svc.yml \
+  -f docker-compose.bastion.yml \
   down
