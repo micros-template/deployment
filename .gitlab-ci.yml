@@ -1,5 +1,6 @@
 stages:
   - deploy
+  - migrate
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -35,3 +36,12 @@ deploy:
   #       chmod +x ./bin/prod-stop.sh
   #       ./bin/prod-stop.sh
   #     fi
+
+migrate:
+  stage: migrate
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker-compose --env-file .env -p dropboks -f docker/docker-compose.bastion.yml up --build --abort-on-container-exit --exit-code-from bastion
+  allow_failure: true
