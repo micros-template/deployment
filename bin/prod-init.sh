@@ -18,4 +18,4 @@ docker compose --env-file ../.env -p dropboks \
   -f docker-compose.redis-prometheus-exp.init.yml \
   -f docker-compose.grafana.init.yml \
   -f docker-compose.prometheus.init.yml \
-  up --wait -d --build
+  up --wait -d
