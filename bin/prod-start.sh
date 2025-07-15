@@ -1,7 +1,5 @@
 #!/bin/sh
 
-./bin/prod-init.sh
-
 export COMPOSE_BAKE=true
 
 cd ./docker
