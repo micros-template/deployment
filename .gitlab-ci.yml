@@ -25,6 +25,7 @@ deploy:
     - chmod +x ./bin/prod-init.sh
     - chmod +x ./bin/prod-start.sh
     - ./bin/prod-start.sh
+    - docker logs bastion -f
   environment:
     name: production
   after_script:
