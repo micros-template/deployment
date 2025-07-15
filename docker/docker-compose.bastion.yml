@@ -10,4 +10,4 @@ services:
       DB_PORT: ${DB_PORT}
       DB_NAME: ${DB_NAME}
       DB_SSLMODE: ${DB_SSLMODE}
-    command: ["/bin/sh", "-c", "ls /init/migrations && /init/migration.sh"]
+    command: [/init/migration.sh"]
