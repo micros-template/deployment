@@ -13,3 +13,7 @@ docker compose --env-file ../.env -p dropboks \
   -f docker-compose.file-svc.yml \
   -f docker-compose.notification-svc.yml \
   up --wait -d --build
+
+docker compose --env-file ../.env -p dropboks \
+  -f docker-compose.bastion.yml \
+  up --wait -d --build
