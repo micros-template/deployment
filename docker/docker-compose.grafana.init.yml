@@ -4,6 +4,7 @@ services:
     build:
       context: ../grafana
       dockerfile: Dockerfile
+    image: grafana-monitoring:v0.0.1
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin

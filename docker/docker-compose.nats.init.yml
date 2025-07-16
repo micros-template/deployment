@@ -4,6 +4,7 @@ services:
     build:
       context: ../nats
     restart: unless-stopped
+    image: nats-mq:v0.0.1
     volumes:
       - nats-data:/nats:rw
       - jetstream-data:/jetstream/data:rw

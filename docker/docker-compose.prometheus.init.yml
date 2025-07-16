@@ -3,6 +3,7 @@ services:
     build:
       context: ../prometheus
     container_name: prometheus
+    image: prometheus-monitoring:v0.0.1
     restart: unless-stopped
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"

@@ -48,7 +48,7 @@ cleanup:
   image: docker:24.0.5
   script: 
     - echo "clean up unused docker images"
-    - docker rmi $(docker images -aq) -f
+    - docker rmi $(docker images -aq) -f || true
   allow_failure: true
   
 migrate:

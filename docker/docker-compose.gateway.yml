@@ -3,6 +3,7 @@ services:
     container_name: gateway
     build:
       context: ../nginx
+    image: gateway:0.0.1
     platform: linux/amd64
     restart: unless-stopped
     ports:
