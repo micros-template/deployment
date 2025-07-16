@@ -40,8 +40,6 @@ deploy:
 migrate:
   stage: migrate
   image: docker:latest
-  services:
-    - docker:dind
   script:
     - docker-compose --env-file .env -p dropboks -f docker/docker-compose.bastion.yml up --build --abort-on-container-exit --exit-code-from bastion
   allow_failure: true
