@@ -1,12 +1,13 @@
 stages:
   - deploy
+  - post-deploy
   - migrate
 
 deploy:
   stage: deploy
   image: docker:24.0.5
   before_script:
-    - apk add --no-cache bash git go
+    - apk add --no-cache bash git go yq
     - docker info
     - set -a
     - source .env
@@ -21,6 +22,10 @@ deploy:
     - export USER_SERVICE_IMAGE="10.1.20.130:5001/dropping/user-service:$(yq '.user_service_version' versions.yaml)"
     - export FILE_SERVICE_IMAGE="10.1.20.130:5001/dropping/file-service:$(yq '.file_service_version' versions.yaml)"
     - export NOTIFICATION_SERVICE_IMAGE="10.1.20.130:5001/dropping/notification-service:$(yq '.notification_service_version' versions.yaml)"
+    - echo $AUTH_SERVICE_IMAGE
+    - echo $USER_SERVICE_IMAGE
+    - echo $FILE_SERVICE_IMAGE
+    - echo $NOTIFICATION_SERVICE_IMAGE
   script:
     - chmod +x ./bin/prod-stop.sh
     - chmod +x ./bin/prod-init.sh
@@ -31,8 +36,6 @@ deploy:
   environment:
     name: production
   after_script:
-    - echo "clean up unused docker images"
-    - docker rmi $(docker images -aq) -f
     - |
       if [ "$CI_JOB_STATUS" = "failed" ]; then
         echo "Job failed, running ./bin/prod-stop.sh for cleanup..."
@@ -40,6 +43,14 @@ deploy:
         ./bin/prod-stop.sh
       fi
 
+cleanup:
+  stage: post-deploy
+  image: docker:24.0.5
+  script: 
+    - echo "clean up unused docker images"
+    - docker rmi $(docker images -aq) -f
+  allow_failure: true
+  
 migrate:
   stage: migrate
   image: docker:latest
