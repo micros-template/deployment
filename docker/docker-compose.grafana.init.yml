@@ -11,9 +11,6 @@ services:
       - GF_SERVER_ROOT_URL=http://localhost/grafana
     restart: unless-stopped
     volumes:
-      - grafana-data:/var/lib/grafana
+      - /srv/grafana-data:/var/lib/grafana
     depends_on:
       - prometheus
-
-volumes:
-  grafana-data:
