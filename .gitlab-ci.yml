@@ -18,10 +18,10 @@ deploy:
   # read from versioning and set to env
     - git clone http://$DROPPING_VERSIONING_TOKEN@10.1.20.130/dropping/versioning.git/
     - cp versioning/version.yaml .
-    - export AUTH_SERVICE_IMAGE="10.1.20.130:5001/dropping/auth-service:$(yq '.auth_service_version' versions.yaml)"
-    - export USER_SERVICE_IMAGE="10.1.20.130:5001/dropping/user-service:$(yq '.user_service_version' versions.yaml)"
-    - export FILE_SERVICE_IMAGE="10.1.20.130:5001/dropping/file-service:$(yq '.file_service_version' versions.yaml)"
-    - export NOTIFICATION_SERVICE_IMAGE="10.1.20.130:5001/dropping/notification-service:$(yq '.notification_service_version' versions.yaml)"
+    - export AUTH_SERVICE_IMAGE="10.1.20.130:5001/dropping/auth-service:$(yq '.auth_service_version' versionsyaml)"
+    - export USER_SERVICE_IMAGE="10.1.20.130:5001/dropping/user-service:$(yq '.user_service_version' version.yaml)"
+    - export FILE_SERVICE_IMAGE="10.1.20.130:5001/dropping/file-service:$(yq '.file_service_version' version.yaml)"
+    - export NOTIFICATION_SERVICE_IMAGE="10.1.20.130:5001/dropping/notification-service:$(yq '.notification_service_version' version.yaml)"
     - echo $AUTH_SERVICE_IMAGE
     - echo $USER_SERVICE_IMAGE
     - echo $FILE_SERVICE_IMAGE
