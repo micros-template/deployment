@@ -5,7 +5,7 @@ if [[ $(basename "$PWD") == "bin" ]]; then
 fi
 
 cd ./docker
-docker compose --env-file ../.env -p dropboks \
+docker compose -p dropboks \
   -f docker-compose.db.init.yml \
   -f docker-compose.grafana.init.yml \
   -f docker-compose.prometheus.init.yml \

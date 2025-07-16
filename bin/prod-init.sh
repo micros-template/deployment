@@ -8,7 +8,7 @@ fi
 export COMPOSE_BAKE=true
 
 cd ./docker
-docker compose --env-file ../.env -p dropboks \
+docker compose -p dropboks \
   -f docker-compose.db.init.yml \
   -f docker-compose.db-prometheus-exp.init.yml \
   -f docker-compose.minio.init.yml \

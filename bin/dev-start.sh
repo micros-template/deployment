@@ -21,4 +21,4 @@ docker compose --env-file ../.env -p dropboks \
   -f docker-compose.grafana.init.yml \
   -f docker-compose.grafana.init.override.yml \
   -f docker-compose.prometheus.init.yml \
-  up --wait -d
+  up --wait -d --build
