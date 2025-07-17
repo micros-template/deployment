@@ -3,7 +3,7 @@ services:
     container_name: gateway
     build:
       context: ../nginx
-    image: app-gateway:0.0.1
+    image: app-gateway:v0.0.1
     platform: linux/amd64
     restart: unless-stopped
     ports:
