@@ -10,5 +10,7 @@ services:
       - "http://nats:8222"
     restart: unless-stopped
     depends_on:
-      - nats
-      - prometheus
+      nats:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy

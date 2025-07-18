@@ -11,3 +11,11 @@ services:
     environment:
       - ENV=production
     command: "/auth_service"
+  
+  auth_service-healthcheck:
+    image: curlimages/curl:latest
+    entrypoint: >
+      /bin/sh -c "until curl -sf http://auth_service/healthy; do sleep 2; done; sleep infinity"
+    depends_on:
+      auth_service:
+        condition: service_started

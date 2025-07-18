@@ -9,5 +9,7 @@ services:
     # need to add password file here 
     command: ["--redis.addr=redis://redis:6379","--redis.password=$REDIS_PASSWORD"]
     depends_on:
-      - redis
-      - prometheus
+      redis:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy

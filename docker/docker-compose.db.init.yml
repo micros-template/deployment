@@ -12,6 +12,11 @@ services:
     restart: unless-stopped
     volumes:
       - user_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5432"] 
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   auth_db:
     build:
@@ -26,6 +31,11 @@ services:
     restart: unless-stopped
     volumes:
       - auth_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5432"] 
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
 volumes:
   auth_db_data:

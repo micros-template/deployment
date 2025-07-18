@@ -13,7 +13,8 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
     depends_on:
-      - prometheus
+      prometheus:
+        condition: service_healthy
 
 volumes:
   grafana-data:

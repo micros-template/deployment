@@ -8,7 +8,17 @@ services:
     restart: unless-stopped
     ports:
       - "81:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/nginx_status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     depends_on:
-      - auth_service
-      - user_service
-      - file_service
+      auth_service-healthcheck:
+        condition: service_completed_successfully
+      user_service-healthcheck:
+        condition: service_completed_successfully
+      file_service:
+        condition: service_started
+    

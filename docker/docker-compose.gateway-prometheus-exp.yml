@@ -6,4 +6,5 @@ services:
     command:
       - '--nginx.scrape-uri=http://gateway/nginx_status'
     depends_on:
-      - gateway
+      gateway:
+        condition: service_healthy

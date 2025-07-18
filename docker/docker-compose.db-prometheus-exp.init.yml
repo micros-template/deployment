@@ -6,8 +6,10 @@ services:
       - DATA_SOURCE_NAME=postgresql://postgres:${DB_POSTGRESQL_PASSWORD}@${DB_USER_DOCKER_HOST}:${DB_PORT}/${DB_NAME}?sslmode=${DB_SSLMODE}
     restart: unless-stopped
     depends_on:
-      - user_db
-      - prometheus
+      user_db:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
   
   authdb-postgresql-exporter:
     image: quay.io/prometheuscommunity/postgres-exporter:v0.17.1
@@ -16,6 +18,8 @@ services:
       - DATA_SOURCE_NAME=postgresql://postgres:${DB_POSTGRESQL_PASSWORD}@${DB_AUTH_DOCKER_HOST}:${DB_PORT}/${DB_NAME}?sslmode=${DB_SSLMODE}
     restart: unless-stopped
     depends_on:
-      - auth_db
-      - prometheus
+      user_db:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
 
