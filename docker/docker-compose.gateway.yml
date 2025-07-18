@@ -15,10 +15,12 @@ services:
       retries: 3
       start_period: 10s
     depends_on:
-      auth_service-healthcheck:
-        condition: service_completed_successfully
-      user_service-healthcheck:
-        condition: service_completed_successfully
+      auth_service:
+        condition: service_started
+      user_service:
+        condition: service_started
       file_service:
+        condition: service_started
+      notification_service:
         condition: service_started
     

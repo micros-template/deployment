@@ -7,10 +7,3 @@ services:
     environment:
       - ENV=production
     command: "/user_service"
-  user_service-healthcheck:
-    image: curlimages/curl:latest
-    entrypoint: >
-      /bin/sh -c "until curl -sf http://user_service/healthy; do sleep 2; done; sleep infinity"
-    depends_on:
-      user_service:
-        condition: service_started
