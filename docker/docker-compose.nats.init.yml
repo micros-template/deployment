@@ -12,12 +12,17 @@ services:
       - NATS_USER=${NATS_USER}
       - NATS_PASSWORD=${NATS_PASSWORD}
     command: "-c /etc/nats/nats.conf --name nats -p 4221 -m 8222"
+
+  nats-healthcheck:
+    image: alpine
+    depends_on:
+      - nats
+    command: sh -c "while true; do nc -z nats 4221 && exit 0 || sleep 5; done"
     healthcheck:
-      test: ["CMD", "nc", "-z", "localhost", "4221"]
+      test: ["CMD", "nc", "-z", "nats", "4221"]
       interval: 10s
       timeout: 5s
       retries: 5
-
 volumes:
   jetstream-data:
   nats-data:
