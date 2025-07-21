@@ -47,6 +47,8 @@ cleanup:
   stage: post-deploy
   image: docker:24.0.5
   script: 
+    - echo "remove unused/exited container"
+    - docker rm $(docker ps -aq) -f || true
     - echo "clean up unused docker images"
     - docker rmi $(docker images -aq) -f || true
   allow_failure: true
