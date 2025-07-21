@@ -1,7 +1,7 @@
 stages:
   - deploy
-  - post-deploy
   - migrate
+  - post-deploy
 
 deploy:
   stage: deploy
