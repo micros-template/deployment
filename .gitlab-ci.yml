@@ -45,9 +45,9 @@ deploy:
   
 migrate:
   stage: migrate
-  image: docker:latest
+  image: docker:24.0.5
   script:
-    - docker-compose --env-file .env -p dropboks -f docker/docker-compose.bastion.yml up --build --abort-on-container-exit --exit-code-from bastion
+    - docker compose --env-file .env -p dropboks -f docker/docker-compose.bastion.yml up --build --abort-on-container-exit --exit-code-from bastion
   allow_failure: true
 
 cleanup:
