@@ -15,6 +15,7 @@ docker compose -p dropboks \
   -f docker-compose.nats-prometheus-exp.init.yml \
   -f docker-compose.redis.init.yml \
   -f docker-compose.redis-prometheus-exp.init.yml \
+  -f docker-compose.opensearch.init.yml \
   -f docker-compose.gateway.yml \
   -f docker-compose.gateway-prometheus-exp.yml \
   -f docker-compose.auth-svc.yml \

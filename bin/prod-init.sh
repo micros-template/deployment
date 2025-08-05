@@ -18,4 +18,5 @@ docker compose -p dropboks \
   -f docker-compose.redis-prometheus-exp.init.yml \
   -f docker-compose.grafana.init.yml \
   -f docker-compose.prometheus.init.yml \
+  -f docker-compose.opensearch.init.yml \
   up --wait -d
