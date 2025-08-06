@@ -46,7 +46,7 @@ services:
       - "--vmalert.proxyURL=http://vmalert:8880"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8428/-/healthy"]
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8428"]
       interval: 30s
       timeout: 10s
       retries: 5
