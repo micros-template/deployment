@@ -23,7 +23,7 @@ services:
   # storing metrics and serve read requests.
   victoriametrics:
     image: victoriametrics/victoria-metrics:v1.123.0
-    container_name: monitoring-victoriametrics
+    container_name: monitoring-vm
     # ports:
     #   - 8428:8428
     #   - 8089:8089
@@ -50,7 +50,7 @@ services:
   #  VictoriaLogs instance, a single process responsible for
   #  storing logs and serving read queries.
   victorialogs:
-    container_name: monitoring-victorialogs
+    container_name: monitoring-vlogs
     image: victoriametrics/victoria-logs:v1.26.0
     # ports:
     #   - "9428:9428"
@@ -85,11 +85,6 @@ services:
         condition: service_healthy
       victorialogs:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8427"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
 
   #  Metrics collector.
   #  It scrapes targets defined in --promscrape.config
@@ -143,7 +138,7 @@ services:
       alertmanager:
         condition: service_started
       vmauth:
-        condition: service_healthy
+        condition: service_started
 
   # alertmanager receives alerting notifications from vmalert
   # and distributes them according to --config.file.
