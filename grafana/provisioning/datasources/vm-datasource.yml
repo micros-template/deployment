@@ -10,6 +10,7 @@ datasources:
     type: prometheus
     access: proxy
     url: http://vmauth:8427/
+    isDefault: true
     jsonData:
       prometheusType: Prometheus
       prometheusVersion: 2.24.0
