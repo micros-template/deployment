@@ -34,6 +34,8 @@ services:
     environment:
       - 'OPENSEARCH_HOSTS=["http://opensearch:9200"]'
       - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true"
+      - "SERVER_BASEPATH=/opensearch"
+      - "SERVER_REWRITEBASEPATH=true"
     restart: unless-stopped
     depends_on:
       - opensearch
