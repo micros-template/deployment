@@ -21,4 +21,4 @@ docker compose -p dropboks \
   -f docker-compose.file-svc.yml \
   -f docker-compose.notification-svc.yml \
   -f docker-compose.bastion.yml \
-  down
+  down -v
