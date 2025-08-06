@@ -48,3 +48,7 @@ scrape_configs:
     static_configs:
       - targets:
           - victoriametrics:8428
+  - job_name: victorialogs
+    static_configs:
+    - targets:
+      - victorialogs:9428

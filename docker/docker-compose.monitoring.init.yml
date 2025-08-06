@@ -1,26 +1,22 @@
 services:
-  #  Metrics collector.
-  #  It scrapes targets defined in --promscrape.config
-  #  And forward them to --remoteWrite.url
-  vmagent:
+  grafana:
+    container_name: monitoring-grafana
     build:
-      context: ../vm/vmagent
+      context: ../grafana
       dockerfile: Dockerfile
-    container_name: monitoring-vmagent
-    image: monitoring-vmagent:v0.0.1
-    volumes:
-      - vmagentdata:/vmagentdata
-    command:
-      - "--promscrape.config=/etc/prometheus/prometheus.yml"
-      - "--remoteWrite.url=http://victoriametrics:8428/api/v1/write"
+    image: monitoring-grafana:v0.0.1
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SERVER_ROOT_URL=http://localhost/grafana
+      - GF_INSTALL_PLUGINS=victoriametrics-logs-datasource,victoriametrics-metrics-datasource
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8429"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+    volumes:
+      - grafana-data:/var/lib/grafana
     depends_on:
       victoriametrics:
+        condition: service_healthy
+      victorialogs:
         condition: service_healthy
 
   # VictoriaMetrics instance, a single process responsible for
@@ -51,21 +47,70 @@ services:
       timeout: 10s
       retries: 5
 
-  # vmlogs:
-
-  grafana:
-    container_name: monitoring-grafana
-    build:
-      context: ../grafana
-      dockerfile: Dockerfile
-    image: monitoring-grafana:v0.0.1
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-      - GF_SERVER_ROOT_URL=http://localhost/grafana
-    restart: unless-stopped
+  #  VictoriaLogs instance, a single process responsible for
+  #  storing logs and serving read queries.
+  victorialogs:
+    container_name: monitoring-victorialogs
+    image: victoriametrics/victoria-logs:v1.26.0
+    # ports:
+    #   - "9428:9428"
+    command:
+      - "--storageDataPath=/vlogs"
     volumes:
-      - grafana-data:/var/lib/grafana
+      - vldata:/vlogs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:9428"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # vmauth is a router and balancer for HTTP requests.
+  # It proxies query requests from vmalert to either VictoriaMetrics or VictoriaLogs,
+  # depending on the requested path.
+  vmauth:
+    # image: victoriametrics/vmauth:v1.120.0
+    container_name: monitoring-vmauth
+    build:
+      context: ../vm/vmauth
+      dockerfile: Dockerfile
+    image: monitoring-vmauth:v0.0.1
+    # ports:
+    #   - 8427:8427
+    command:
+      - "--auth.config=/etc/auth.yml"
+    restart: unless-stopped
+    depends_on:
+      victoriametrics:
+        condition: service_healthy
+      victorialogs:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8427"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  #  Metrics collector.
+  #  It scrapes targets defined in --promscrape.config
+  #  And forward them to --remoteWrite.url
+  vmagent:
+    build:
+      context: ../vm/vmagent
+      dockerfile: Dockerfile
+    container_name: monitoring-vmagent
+    image: monitoring-vmagent:v0.0.1
+    volumes:
+      - vmagentdata:/vmagentdata
+    command:
+      - "--promscrape.config=/etc/prometheus/prometheus.yml"
+      - "--remoteWrite.url=http://vmauth:8427/api/v1/write"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8429"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     depends_on:
       victoriametrics:
         condition: service_healthy
@@ -78,14 +123,14 @@ services:
       dockerfile: Dockerfile
     image: monitoring-vmalert:v0.0.1
     command:
-      - "--datasource.url=http://victoriametrics:8428/"
+      - "--datasource.url=http://vmauth:8427/"
       - "--remoteRead.url=http://victoriametrics:8428/"
       - "--remoteWrite.url=http://vmagent:8429/"
       - "--notifier.url=http://alertmanager:9093/"
       - "--rule=/etc/alerts/*.yml"
       # display source of alerts in grafana
-      - "--external.url=http://grafana:3000" #grafana outside container
-      - '--external.alert.source=explore?orgId=1&left={"datasource":"VictoriaMetrics","queries":[{"expr":{{.Expr|jsonEscape|queryEscape}},"refId":"A"}],"range":{"from":"{{ .ActiveAt.UnixMilli }}","to":"now"}}'
+      - "--external.url=http://grafana:3000"
+      - '--external.alert.source=explore?orgId=1&left={"datasource":"{{ if eq .Type "vlogs" }}VictoriaLogs{{ else }}VictoriaMetrics{{ end }}","queries":[{"expr":{{.Expr|jsonEscape|queryEscape}},"refId":"A"}],"range":{"from":"{{ .ActiveAt.UnixMilli }}","to":"now"}}'
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8880"]
@@ -97,6 +142,8 @@ services:
         condition: service_healthy
       alertmanager:
         condition: service_started
+      vmauth:
+        condition: service_healthy
 
   # alertmanager receives alerting notifications from vmalert
   # and distributes them according to --config.file.
@@ -114,3 +161,4 @@ volumes:
   vmagentdata: {}
   vmdata: {}
   grafana-data: {}
+  vldata: {}

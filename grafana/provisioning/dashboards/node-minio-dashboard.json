@@ -44,7 +44,7 @@
   "panels": [
     {
       "datasource": {
-        "type": "prometheus",
+        "type": "victoriametrics-metrics-datasource",
         "name": "VictoriaMetrics"
       },
       "description": "",
@@ -105,7 +105,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "exemplar": true,
@@ -126,7 +126,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
+        "type": "victoriametrics-metrics-datasource",
         "name": "VictoriaMetrics"
       },
       "description": "",
@@ -170,7 +170,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "editorMode": "code",
@@ -189,7 +189,7 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "editorMode": "code",
@@ -208,7 +208,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
+        "type": "victoriametrics-metrics-datasource",
         "name": "VictoriaMetrics"
       },
       "description": "",
@@ -292,7 +292,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "exemplar": true,
@@ -303,7 +303,7 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "exemplar": true,
@@ -314,7 +314,7 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "exemplar": true,
@@ -329,7 +329,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
+        "type": "victoriametrics-metrics-datasource",
         "name": "VictoriaMetrics"
       },
       "description": "",
@@ -413,7 +413,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "exemplar": true,
@@ -428,7 +428,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
+        "type": "victoriametrics-metrics-datasource",
         "name": "VictoriaMetrics"
       },
       "description": "",
@@ -512,7 +512,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "exemplar": true,
@@ -527,7 +527,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
+        "type": "victoriametrics-metrics-datasource",
         "name": "VictoriaMetrics"
       },
       "description": "",
@@ -611,7 +611,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "exemplar": true,
@@ -626,7 +626,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
+        "type": "victoriametrics-metrics-datasource",
         "name": "VictoriaMetrics"
       },
       "description": "",
@@ -741,7 +741,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "exemplar": true,
@@ -756,7 +756,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
+        "type": "victoriametrics-metrics-datasource",
         "name": "VictoriaMetrics"
       },
       "description": "",
@@ -840,7 +840,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "victoriametrics-metrics-datasource",
             "name": "VictoriaMetrics"
           },
           "exemplar": true,
@@ -862,7 +862,7 @@
       {
         "current": {},
         "datasource": {
-          "type": "prometheus",
+          "type": "victoriametrics-metrics-datasource",
           "name": "VictoriaMetrics"
         },
         "definition": "label_values(job)",
@@ -884,7 +884,7 @@
       {
         "current": {},
         "datasource": {
-          "type": "prometheus",
+          "type": "victoriametrics-metrics-datasource",
           "name": "VictoriaMetrics"
         },
         "definition": "label_values(minio_node_drive_total,server)",
