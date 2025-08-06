@@ -76,7 +76,7 @@ services:
     build:
       context: ../vm/vmalert
       dockerfile: Dockerfile
-    image: monitoring-vmagent:v0.0.1
+    image: monitoring-vmalert:v0.0.1
     command:
       - "--datasource.url=http://victoriametrics:8428/"
       - "--remoteRead.url=http://victoriametrics:8428/"
