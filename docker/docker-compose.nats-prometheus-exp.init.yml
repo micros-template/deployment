@@ -8,6 +8,8 @@ services:
       - "-varz"
       - "-jsz=all"
       - "http://nats:8222"
+    expose:
+      - "7777"
     restart: unless-stopped
     depends_on:
       nats-healthcheck:
