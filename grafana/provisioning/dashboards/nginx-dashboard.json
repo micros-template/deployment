@@ -58,7 +58,7 @@
   "panels": [
     {
       "collapsed": false,
-      "datasource": "prometheus-global",
+      "datasource": "VictoriaMetrics",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -76,12 +76,8 @@
       "colorPostfix": false,
       "colorPrefix": false,
       "colorValue": false,
-      "colors": [
-        "#E02F44",
-        "#FF9830",
-        "#299c46"
-      ],
-      "datasource": "prometheus-global",
+      "colors": ["#E02F44", "#FF9830", "#299c46"],
+      "datasource": "VictoriaMetrics",
       "decimals": null,
       "description": "",
       "format": "none",
@@ -167,7 +163,7 @@
     },
     {
       "collapsed": false,
-      "datasource": "prometheus-global",
+      "datasource": "VictoriaMetrics",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -184,7 +180,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "prometheus-global",
+      "datasource": "VictoriaMetrics",
       "decimals": null,
       "description": "",
       "fill": 1,
@@ -285,7 +281,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "prometheus-global",
+      "datasource": "VictoriaMetrics",
       "decimals": 0,
       "fill": 1,
       "gridPos": {
@@ -396,7 +392,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "prometheus-global",
+      "datasource": "VictoriaMetrics",
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -481,11 +477,7 @@
   "refresh": "5s",
   "schemaVersion": 18,
   "style": "dark",
-  "tags": [
-    "nginx",
-    "prometheus",
-    "nginx prometheus exporter"
-  ],
+  "tags": ["nginx", "prometheus", "nginx prometheus exporter"],
   "templating": {
     "list": [
       {
@@ -548,17 +540,7 @@
       "2h",
       "1d"
     ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "",
   "title": "NGINX",

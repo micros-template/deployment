@@ -2,7 +2,7 @@
   "__inputs": [
     {
       "name": "DS__NATS-PROMETHEUS",
-      "label": " prometheus-global",
+      "label": " VictoriaMetrics",
       "description": "",
       "type": "datasource",
       "pluginId": "prometheus",
@@ -108,9 +108,7 @@
       "options": {
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -166,9 +164,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -224,9 +220,7 @@
       "options": {
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -282,9 +276,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -337,9 +329,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -388,9 +378,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -439,9 +427,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -493,9 +479,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -1127,11 +1111,7 @@
   "refresh": "10s",
   "schemaVersion": 34,
   "style": "dark",
-  "tags": [
-    "prometheus",
-    "nats",
-    "jetstream"
-  ],
+  "tags": ["prometheus", "nats", "jetstream"],
   "templating": {
     "list": [
       {
@@ -1155,7 +1135,7 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false,
-        "datasource": "prometheus-global"
+        "datasource": "VictoriaMetrics"
       },
       {
         "current": {},
@@ -1178,7 +1158,7 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false,
-        "datasource": "prometheus-global"
+        "datasource": "VictoriaMetrics"
       },
       {
         "current": {},
@@ -1201,7 +1181,7 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false,
-        "datasource": "prometheus-global"
+        "datasource": "VictoriaMetrics"
       }
     ]
   },
@@ -1222,17 +1202,7 @@
       "2h",
       "1d"
     ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "browser",
   "title": "NATS JetStream",

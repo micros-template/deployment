@@ -1,0 +1,116 @@
+services:
+  #  Metrics collector.
+  #  It scrapes targets defined in --promscrape.config
+  #  And forward them to --remoteWrite.url
+  vmagent:
+    build:
+      context: ../vm/vmagent
+      dockerfile: Dockerfile
+    container_name: monitoring-vmagent
+    image: monitoring-vmagent:v0.0.1
+    volumes:
+      - vmagentdata:/vmagentdata
+    command:
+      - "--promscrape.config=/etc/prometheus/prometheus.yml"
+      - "--remoteWrite.url=http://victoriametrics:8428/api/v1/write"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8429"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    depends_on:
+      victoriametrics:
+        condition: service_healthy
+
+  # VictoriaMetrics instance, a single process responsible for
+  # storing metrics and serve read requests.
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:v1.123.0
+    container_name: monitoring-victoriametrics
+    # ports:
+    #   - 8428:8428
+    #   - 8089:8089
+    #   - 8089:8089/udp
+    #   - 2003:2003
+    #   - 2003:2003/udp
+    #   - 4242:4242
+    volumes:
+      - vmdata:/storage
+    command:
+      - "--storageDataPath=/storage"
+      - "--graphiteListenAddr=:2003"
+      - "--opentsdbListenAddr=:4242"
+      - "--httpListenAddr=:8428"
+      - "--influxListenAddr=:8089"
+      - "--vmalert.proxyURL=http://vmalert:8880"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8428/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # vmlogs:
+
+  grafana:
+    container_name: monitoring-grafana
+    build:
+      context: ../grafana
+      dockerfile: Dockerfile
+    image: monitoring-grafana:v0.0.1
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SERVER_ROOT_URL=http://localhost/grafana
+    restart: unless-stopped
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      victoriametrics:
+        condition: service_healthy
+
+  # vmalert executes alerting and recording rules
+  vmalert:
+    container_name: monitoring-vmalert
+    build:
+      context: ../vm/vmalert
+      dockerfile: Dockerfile
+    image: monitoring-vmagent:v0.0.1
+    command:
+      - "--datasource.url=http://victoriametrics:8428/"
+      - "--remoteRead.url=http://victoriametrics:8428/"
+      - "--remoteWrite.url=http://vmagent:8429/"
+      - "--notifier.url=http://alertmanager:9093/"
+      - "--rule=/etc/alerts/*.yml"
+      # display source of alerts in grafana
+      - "--external.url=http://grafana:3000" #grafana outside container
+      - '--external.alert.source=explore?orgId=1&left={"datasource":"VictoriaMetrics","queries":[{"expr":{{.Expr|jsonEscape|queryEscape}},"refId":"A"}],"range":{"from":"{{ .ActiveAt.UnixMilli }}","to":"now"}}'
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8880"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    depends_on:
+      victoriametrics:
+        condition: service_healthy
+      alertmanager:
+        condition: service_started
+
+  # alertmanager receives alerting notifications from vmalert
+  # and distributes them according to --config.file.
+  alertmanager:
+    build:
+      context: ../vm/alertmanager
+      dockerfile: Dockerfile
+    container_name: monitoring-alertmanager
+    image: monitoring-alertmanager:v0.0.1
+    command:
+      - "--config.file=/config/alertmanager.yml"
+    restart: unless-stopped
+
+volumes:
+  vmagentdata: {}
+  vmdata: {}
+  grafana-data: {}

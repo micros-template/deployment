@@ -1,8 +1,7 @@
-FROM grafana/grafana:11.6.3-ubuntu
+FROM grafana/grafana:12.0.2
 
 # Copy provisioning files
 COPY provisioning/datasources /etc/grafana/provisioning/datasources
-COPY provisioning/dashboard /etc/grafana/provisioning/dashboards
+COPY provisioning/dashboards/dashboard.yml /etc/grafana/provisioning/dashboards/dashboard.yml
+COPY provisioning/dashboards /var/lib/grafana/dashboards
 
-# Copy dashboard JSON files
-COPY provisioning/dashboard/* /etc/grafana/provisioning/dashboards/

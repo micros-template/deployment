@@ -8,3 +8,4 @@ services:
     depends_on:
       gateway:
         condition: service_healthy
+        

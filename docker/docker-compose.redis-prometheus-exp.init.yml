@@ -6,10 +6,11 @@ services:
       - REDIS_ADDR=redis://redis:6379
       - REDIS_PASSWORD=${REDIS_PASSWORD}
     restart: unless-stopped
-    # need to add password file here 
-    command: ["--redis.addr=redis://redis:6379","--redis.password=$REDIS_PASSWORD"]
+    # need to add password file here
+    command:
+      ["--redis.addr=redis://redis:6379", "--redis.password=$REDIS_PASSWORD"]
     depends_on:
       redis:
         condition: service_healthy
-      prometheus:
+      vmagent:
         condition: service_healthy

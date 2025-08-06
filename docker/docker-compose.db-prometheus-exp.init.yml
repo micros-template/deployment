@@ -8,9 +8,9 @@ services:
     depends_on:
       user_db:
         condition: service_healthy
-      prometheus:
+      vmagent:
         condition: service_healthy
-  
+
   authdb-postgresql-exporter:
     image: quay.io/prometheuscommunity/postgres-exporter:v0.17.1
     container_name: authdb-postgresql-exporter
@@ -20,6 +20,5 @@ services:
     depends_on:
       user_db:
         condition: service_healthy
-      prometheus:
+      vmagent:
         condition: service_healthy
-

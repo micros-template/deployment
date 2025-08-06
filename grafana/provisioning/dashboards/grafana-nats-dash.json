@@ -2,7 +2,7 @@
   "__inputs": [
     {
       "name": "DS__NATS-PROMETHEUS",
-      "label": " prometheus-global",
+      "label": " VictoriaMetrics",
       "description": "",
       "type": "datasource",
       "pluginId": "prometheus",
@@ -73,7 +73,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -136,11 +136,7 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max"
-          ],
+          "calcs": ["mean", "lastNotNull", "max"],
           "displayMode": "table",
           "placement": "bottom"
         },
@@ -165,7 +161,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -228,11 +224,7 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max"
-          ],
+          "calcs": ["mean", "lastNotNull", "max"],
           "displayMode": "table",
           "placement": "bottom"
         },
@@ -270,7 +262,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -333,9 +325,7 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "displayMode": "table",
           "placement": "bottom"
         },
@@ -360,7 +350,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -423,9 +413,7 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "displayMode": "table",
           "placement": "bottom"
         },
@@ -450,7 +438,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -513,9 +501,7 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "displayMode": "table",
           "placement": "bottom"
         },
@@ -540,7 +526,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -603,9 +589,7 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "displayMode": "table",
           "placement": "bottom"
         },
@@ -643,7 +627,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -707,11 +691,7 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max"
-          ],
+          "calcs": ["mean", "lastNotNull", "max"],
           "displayMode": "table",
           "placement": "bottom"
         },
@@ -736,7 +716,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -800,11 +780,7 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max"
-          ],
+          "calcs": ["mean", "lastNotNull", "max"],
           "displayMode": "table",
           "placement": "bottom"
         },
@@ -830,7 +806,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -894,11 +870,7 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max"
-          ],
+          "calcs": ["mean", "lastNotNull", "max"],
           "displayMode": "table",
           "placement": "bottom"
         },
@@ -924,10 +896,7 @@
   "refresh": false,
   "schemaVersion": 34,
   "style": "dark",
-  "tags": [
-    "prometheus",
-    "nats"
-  ],
+  "tags": ["prometheus", "nats"],
   "templating": {
     "list": []
   },
@@ -948,17 +917,7 @@
       "2h",
       "1d"
     ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "browser",
   "title": "NATS Servers",

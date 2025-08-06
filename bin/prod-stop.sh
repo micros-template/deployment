@@ -7,15 +7,13 @@ fi
 cd ./docker
 docker compose -p dropboks \
   -f docker-compose.db.init.yml \
-  -f docker-compose.grafana.init.yml \
-  -f docker-compose.prometheus.init.yml \
+  -f docker-compose.monitoring.init.yml \
   -f docker-compose.db-prometheus-exp.init.yml \
   -f docker-compose.minio.init.yml \
   -f docker-compose.nats.init.yml \
   -f docker-compose.nats-prometheus-exp.init.yml \
   -f docker-compose.redis.init.yml \
   -f docker-compose.redis-prometheus-exp.init.yml \
-  -f docker-compose.opensearch.init.yml \
   -f docker-compose.gateway.yml \
   -f docker-compose.gateway-prometheus-exp.yml \
   -f docker-compose.auth-svc.yml \
@@ -24,3 +22,4 @@ docker compose -p dropboks \
   -f docker-compose.notification-svc.yml \
   -f docker-compose.bastion.yml \
   down
+  # -f docker-compose.grafana.init.yml \

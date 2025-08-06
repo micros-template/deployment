@@ -36,9 +36,7 @@
       "icon": "external link",
       "includeVars": true,
       "keepTime": true,
-      "tags": [
-        "minio"
-      ],
+      "tags": ["minio"],
       "type": "dashboards"
     }
   ],
@@ -47,7 +45,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -94,9 +92,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "fields": "",
           "values": false
         },
@@ -110,7 +106,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "exemplar": true,
           "expr": "max(minio_node_drive_total{job=~\"$scrape_jobs\",server=\"$server\"})",
@@ -131,7 +127,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -162,9 +158,7 @@
         "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -177,7 +171,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -196,7 +190,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -215,7 +209,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -299,7 +293,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "exemplar": true,
           "expr": "minio_node_drive_total_bytes{job=~\"$scrape_jobs\",server=\"$server\"}",
@@ -310,7 +304,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "exemplar": true,
           "expr": "minio_node_drive_used_bytes{job=~\"$scrape_jobs\",server=\"$server\"}",
@@ -321,7 +315,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "exemplar": true,
           "expr": "minio_node_drive_free_bytes{job=~\"$scrape_jobs\",server=\"$server\"}",
@@ -336,7 +330,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -420,7 +414,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "exemplar": true,
           "expr": "minio_node_drive_free_inodes{job=~\"$scrape_jobs\",server=\"$server\"}",
@@ -435,7 +429,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -519,7 +513,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "exemplar": true,
           "expr": "minio_node_drive_latency_us{job=~\"$scrape_jobs\",server=\"$server\"}",
@@ -534,7 +528,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -618,7 +612,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "exemplar": true,
           "expr": "minio_node_drive_errors_availability{job=~\"$scrape_jobs\",server=\"$server\"}",
@@ -633,7 +627,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -748,7 +742,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "exemplar": true,
           "expr": "minio_node_drive_errors_timeout{job=~\"$scrape_jobs\",server=\"$server\"}",
@@ -763,7 +757,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "prometheus-global"
+        "name": "VictoriaMetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -847,7 +841,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "prometheus-global"
+            "name": "VictoriaMetrics"
           },
           "exemplar": true,
           "expr": "minio_node_drive_io_waiting{job=~\"$scrape_jobs\",server=\"$server\"}",
@@ -862,17 +856,14 @@
   ],
   "refresh": "",
   "schemaVersion": 39,
-  "tags": [
-    "minio"
-  ],
+  "tags": ["minio"],
   "templating": {
     "list": [
       {
-        "current": {
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "name": "prometheus-global"
+          "name": "VictoriaMetrics"
         },
         "definition": "label_values(job)",
         "hide": 0,
@@ -891,11 +882,10 @@
         "type": "query"
       },
       {
-        "current": {
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "name": "prometheus-global"
+          "name": "VictoriaMetrics"
         },
         "definition": "label_values(minio_node_drive_total,server)",
         "hide": 0,
@@ -933,17 +923,7 @@
       "2h",
       "1d"
     ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "",
   "title": "MinIO Node",
