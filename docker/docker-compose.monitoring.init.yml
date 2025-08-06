@@ -15,7 +15,7 @@ services:
       - "--remoteWrite.url=http://victoriametrics:8428/api/v1/write"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8429"]
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8429"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -88,7 +88,7 @@ services:
       - '--external.alert.source=explore?orgId=1&left={"datasource":"VictoriaMetrics","queries":[{"expr":{{.Expr|jsonEscape|queryEscape}},"refId":"A"}],"range":{"from":"{{ .ActiveAt.UnixMilli }}","to":"now"}}'
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8880"]
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8880"]
       interval: 30s
       timeout: 10s
       retries: 5
