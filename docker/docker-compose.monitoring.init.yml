@@ -9,7 +9,6 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_SERVER_ROOT_URL=http://localhost/grafana
-      - GF_INSTALL_PLUGINS=victoriametrics-logs-datasource,victoriametrics-metrics-datasource
     restart: unless-stopped
     volumes:
       - grafana-data:/var/lib/grafana

@@ -1135,7 +1135,10 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false,
-        "datasource": "VictoriaMetrics"
+        "datasource": {
+          "type": "prometheus",
+          "name": "VictoriaMetrics"
+        }
       },
       {
         "current": {},
@@ -1158,7 +1161,10 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false,
-        "datasource": "VictoriaMetrics"
+        "datasource": {
+          "type": "prometheus",
+          "name": "VictoriaMetrics"
+        }
       },
       {
         "current": {},
@@ -1181,7 +1187,10 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false,
-        "datasource": "VictoriaMetrics"
+        "datasource": {
+          "type": "prometheus",
+          "name": "VictoriaMetrics"
+        }
       }
     ]
   },
