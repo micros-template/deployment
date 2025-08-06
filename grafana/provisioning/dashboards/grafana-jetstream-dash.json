@@ -2,11 +2,12 @@
   "__inputs": [
     {
       "name": "DS__NATS-PROMETHEUS",
-      "label": " VictoriaMetrics",
+      "label": "VictoriaMetrics",
       "description": "",
       "type": "datasource",
       "pluginId": "prometheus",
-      "pluginName": "Prometheus"
+      "pluginName": "Prometheus",
+      "value": "VictoriaMetrics"
     }
   ],
   "__elements": [],
@@ -1118,14 +1119,24 @@
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": "VictoriaMetrics",
+          "value": "VictoriaMetrics"
+        },
         "definition": "label_values(jetstream_server_total_streams, server_id)",
         "hide": 0,
         "includeAll": true,
         "label": "Server",
         "multi": true,
         "name": "server",
-        "options": [],
+        "options": [
+          {
+            "text": "VictoriaMetrics",
+            "value": "VictoriaMetrics",
+            "selected": true
+          }
+        ],
         "query": {
           "query": "label_values(jetstream_server_total_streams, server_id)",
           "refId": "StandardVariableQuery"

@@ -522,16 +522,26 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": "prometheus-nginx-exporter:9113",
+          "value": "prometheus-nginx-exporter:9113"
+        },
         "datasource": "",
-        "definition": "label_values(nginx_up, instance)",
+        "definition": "prometheus-nginx-exporter:9113",
         "hide": 0,
-        "includeAll": true,
+        "includeAll": false,
         "label": "",
-        "multi": true,
+        "multi": false,
         "name": "instance",
-        "options": [],
-        "query": "label_values(nginx_up, instance)",
+        "options": [
+          {
+            "text": "prometheus-nginx-exporter:9113",
+            "value": "prometheus-nginx-exporter:9113",
+            "selected": true
+          }
+        ],
+        "query": "prometheus-nginx-exporter:9113",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

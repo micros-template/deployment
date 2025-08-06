@@ -2,11 +2,12 @@
   "__inputs": [
     {
       "name": "DS__NATS-PROMETHEUS",
-      "label": " VictoriaMetrics",
+      "label": "VictoriaMetrics",
       "description": "",
       "type": "datasource",
       "pluginId": "prometheus",
-      "pluginName": "Prometheus"
+      "pluginName": "Prometheus",
+      "value": "VictoriaMetrics"
     }
   ],
   "__elements": [],
