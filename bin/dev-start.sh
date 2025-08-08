@@ -20,4 +20,5 @@ docker compose --env-file ../.env -p dropboks \
   -f docker-compose.redis-prometheus-exp.init.yml \
   -f docker-compose.monitoring.init.yml \
   -f docker-compose.monitoring.init.override.yml \
+  -f docker-compose.log-svc.yml \
   up --wait -d --build

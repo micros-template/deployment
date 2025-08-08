@@ -4,3 +4,7 @@ services:
       - "3000:3000"
     environment:
       - GF_SERVER_ROOT_URL=http://localhost:3000/
+  victorialogs:
+    ports:
+      - "9428:9428"
+    

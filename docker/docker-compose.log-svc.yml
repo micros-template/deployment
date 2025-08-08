@@ -1,0 +1,14 @@
+services:
+  log_service:
+    platform: linux/amd64
+    image: ${LOG_SERVICE_IMAGE}
+    container_name: log_service
+    restart: unless-stopped
+    depends_on:
+      - file_service
+      - user_service
+      - notification_service
+      - auth_service
+    environment:
+      - ENV=production
+    command: "/log_service"

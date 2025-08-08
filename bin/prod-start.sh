@@ -10,6 +10,7 @@ docker compose -p dropboks \
   -f docker-compose.user-svc.yml \
   -f docker-compose.file-svc.yml \
   -f docker-compose.notification-svc.yml \
+  -f docker-compose.log-svc.yml \
   pull
 
 docker compose -p dropboks \
@@ -19,4 +20,5 @@ docker compose -p dropboks \
   -f docker-compose.user-svc.yml \
   -f docker-compose.file-svc.yml \
   -f docker-compose.notification-svc.yml \
+  -f docker-compose.log-svc.yml \
   up --wait -d --build
