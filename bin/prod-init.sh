@@ -9,6 +9,7 @@ export COMPOSE_BAKE=true
 
 cd ./docker
 docker compose -p dropboks \
+  -f docker-compose.monitoring.init.yml \
   -f docker-compose.db.init.yml \
   -f docker-compose.db-prometheus-exp.init.yml \
   -f docker-compose.minio.init.yml \
@@ -16,5 +17,4 @@ docker compose -p dropboks \
   -f docker-compose.nats-prometheus-exp.init.yml \
   -f docker-compose.redis.init.yml \
   -f docker-compose.redis-prometheus-exp.init.yml \
-  -f docker-compose.monitoring.init.yml \
   up --wait -d --build
