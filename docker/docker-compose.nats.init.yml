@@ -2,7 +2,8 @@ services:
   nats:
     container_name: nats
     build:
-      context: ../nats
+      context: ..
+      dockerfile: nats/Dockerfile
     restart: unless-stopped
     image: nats-mq:v0.0.1
     volumes:

@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [[ $(basename "$PWD") == "bin" ]]; then
-  echo "Run this from project root!!"
-  exit 1
-fi
-
 cd ./docker
 docker compose --env-file ../.env -p dropboks \
   -f docker-compose.db.init.yml \

@@ -1,14 +1,14 @@
 #!/bin/sh
 
-if [[ $(basename "$PWD") == "bin" ]]; then
-  echo "Run this from project root!!"
-  exit 1
-fi
+# if [[ $(basename "$PWD") == "bin" ]]; then
+#   echo "Run this from project root!!"
+#   exit 1
+# fi
 
 export COMPOSE_BAKE=true
 
 cd ./docker
-docker compose -p dropboks \
+docker compose --env-file ../.env -p dropboks \
   -f docker-compose.monitoring.init.yml \
   -f docker-compose.db.init.yml \
   -f docker-compose.db-prometheus-exp.init.yml \

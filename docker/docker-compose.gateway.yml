@@ -2,14 +2,19 @@ services:
   gateway:
     container_name: gateway
     build:
-      context: ../nginx
-    image: app-gateway:v0.0.1
+      context: ..
+      dockerfile: nginx/Dockerfile
+    # image: app-gateway:v0.0.1
     platform: linux/amd64
     restart: unless-stopped
     ports:
-      - "81:80"
+      - "80:80"
+      - "443:443"
+    volumes:
+      - access_log:/var/log/nginx/access.log;
+      - error_log:/var/log/nginx/error.log;
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/nginx_status"]
+      test: ["CMD", "curl", "-k", "https://localhost/nginx_status"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -23,4 +28,6 @@ services:
         condition: service_started
       notification_service:
         condition: service_started
-    
+volumes:
+  access_log: {}
+  error_log: {}

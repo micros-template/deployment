@@ -3,7 +3,7 @@
 export COMPOSE_BAKE=true
 
 cd ./docker
-docker compose -p dropboks \
+docker compose --env-file ../.env -p dropboks \
   -f docker-compose.gateway.yml \
   -f docker-compose.gateway-prometheus-exp.yml \
   -f docker-compose.auth-svc.yml \
@@ -13,7 +13,7 @@ docker compose -p dropboks \
   -f docker-compose.log-svc.yml \
   pull
 
-docker compose -p dropboks \
+docker compose --env-file ../.env -p dropboks \
   -f docker-compose.gateway.yml \
   -f docker-compose.gateway-prometheus-exp.yml \
   -f docker-compose.auth-svc.yml \

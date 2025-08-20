@@ -1,11 +1,8 @@
 #!/bin/sh
-if [[ $(basename "$PWD") == "bin" ]]; then
-  echo "Run this from project root!!"
-  exit 1
-fi
+
 
 cd ./docker
-docker compose -p dropboks \
+docker compose --env-file ../.env -p dropboks \
   -f docker-compose.gateway.yml \
   -f docker-compose.gateway-prometheus-exp.yml \
   -f docker-compose.auth-svc.yml \
