@@ -11,7 +11,7 @@ scrape_configs:
   - job_name: "nginx-scraper"
     scrape_interval: 60s
     static_configs:
-      - targets: ["prometheus-nginx-exporter:9113"]
+      - targets: ["prometheus-nginx-exporter:2112"]
   - job_name: "redis-scraper"
     scrape_interval: 60s
     static_configs:

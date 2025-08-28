@@ -1,11 +1,11 @@
 services:
   prometheus-nginx-exporter:
-    image: nginx/nginx-prometheus-exporter:1.4
+    image: daffaputranarendra/sysy:v0.0.2
     container_name: prometheus-nginx-exporter
-    restart: unless-stopped
-    command:
-      - '--nginx.scrape-uri=http://gateway/nginx_status'
+    environment:
+      - CONF_NGINX_TARGET_URL=http://gateway/nginx_status
+      - CONF_SYSLOG_ADDR=:5140
+      - CONF_LOG_ENABLE=true
     depends_on:
       gateway:
         condition: service_healthy
-        
