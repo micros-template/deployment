@@ -8,4 +8,4 @@ services:
       - CONF_LOG_ENABLE=true
     depends_on:
       gateway:
-        condition: service_healthy
+        condition: service_started
